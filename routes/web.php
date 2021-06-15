@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:supplier']], function(){
     Route::get('/supplier/katalog/verifikasi/{id}', 'SupplierController@verifikasidetail');
     Route::get('/supplier/katalog/disetujuiverifikasi/{id}', 'SupplierController@disetujui');
     Route::get('/supplier/katalog/ditolakverifikasi/{id}', 'SupplierController@ditolak');
+    Route::post('/supplier/katalog/verifikasi/{id}', 'SupplierController@bukti');
+    Route::get('/supplier/katalog/bukti/{id}', 'SupplierController@buktiupload');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:customer']], function(){

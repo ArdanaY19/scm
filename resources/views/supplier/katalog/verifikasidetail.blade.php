@@ -75,7 +75,7 @@
                             <tr>
                                 @if($k_transaction->bukti_resi == '' && $k_transaction->status != 1)
                                 <td colspan="5" ><strong></strong></td>
-                                <td align="left"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-upload"></i> Upload Resi</button></td>
+                                <td align="right"><a href="{{ url('/supplier/katalog/bukti') }}/{{ $k_transaction->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Upload Bukti Resi</a></td>
                                 @elseif($k_transaction->status == 1)
                                 <td colspan="5" ><strong></strong></td>
                                 <td align="left"><button type="button" class="btn btn-danger" readonly title="Bukti Resi Telah Diupload" hidden=""><i class="fas fa-upload"></i> Upload Resi</button></td>

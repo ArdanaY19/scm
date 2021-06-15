@@ -251,4 +251,30 @@ class SupplierController extends Controller
         Alert::error('Verifikasi Pembayaran Ditolak');
         return redirect('/supplier/katalog/verifikasi');
     }
+
+    public function buktiupload($id)
+    {
+        $k_transaction = K_transaction::where('id', $id)->first();
+        $k_detailtransactions = K_detailtransaction::where('k_transaction_id', $k_transaction->id)->get();
+
+        return view('supplier.katalog.bukti', compact('k_transaction', 'k_detailtransactions'));
+    }
+
+    public function bukti(Request $request, $id)
+    {
+        $validation = $request->validate([
+            'bukti_resi' => ['required', 'mimes:jpg,jpeg,png'],
+        ]);
+
+        $k_transaction = K_transaction::findorfail($id);
+        if ($request->hasFile('bukti_resi')) {
+            $request->file('bukti_resi')->move('bukti_resi/', $request->file('bukti_resi')->getClientOriginalName());
+            $k_transaction->bukti_resi = $request->file('bukti_resi')->getClientOriginalName();
+            $k_transaction->save();
+        }
+        $k_transaction->save();
+
+        Alert::success('Bukti Resi Berhasil Diupload, Menunggu Verifikasi');
+        return redirect('/supplier/katalog/verifikasi');
+    }
 }
