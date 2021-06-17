@@ -50,6 +50,16 @@
                                 </span>
                                 @enderror
                             </div>
+                            
+                            <div class="form-group">
+                                <label for="">Kategori katalog</label>
+                                <input type="number" name="kategori_katalog" id="kategori_katalog" class="form-control @error('kategori_katalog') is-invalid @enderror" value="{{ old('kategori_katalog') }}" autocomplete="kategori_katalog" autofocus>
+                                @error('kategori_katalog')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
                             <div class="form-group">
                                 <label for="">Deskripsi Katalog</label>

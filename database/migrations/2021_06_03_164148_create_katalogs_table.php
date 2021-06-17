@@ -19,6 +19,8 @@ class CreateKatalogsTable extends Migration
             $table->string('gambar');
             $table->integer('harga');
             $table->integer('stok');
+            $table->string('username');
+            $table->integer('kategori_katalog');
             $table->text('deskripsi');
             $table->timestamps();
         });

@@ -42,7 +42,7 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1><a href="index.html">Dafam Hotel</a></h1>
+        <h1><a href="/supplier/dashboard">Dafam Hotel</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -52,8 +52,8 @@
           <li><a class="nav-link scrollto {{ request()->is('supplier/dashboard') ? 'active' : '' }}" href="/supplier/dashboard">Home</a></li>
           <li><a class="nav-link scrollto {{ request()->is('supplier/katalog/katalog') ? 'active' : '' }}" href="/supplier/katalog/katalog">Katalog</a></li>
           <li><a class="nav-link scrollto {{ request()->is('supplier/katalog/verifikasi') ? 'active' : '' }}" href="/supplier/katalog/verifikasi">Verifikasi</a></li>
-          <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#team">Team</a></li>
+          {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#team">Team</a></li> --}}
           <li class="dropdown"><a href="#"><span class="text-capitalize">{{auth()->user()->username}}</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/supplier/profile/profile/{{auth()->user()->supplier->id}}">Profile</a></li>
@@ -78,7 +78,7 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-top">
+    {{-- <div class="footer-top">
       <div class="container">
         <div class="row">
 
@@ -134,7 +134,7 @@
 
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="container">
       <div class="copyright">

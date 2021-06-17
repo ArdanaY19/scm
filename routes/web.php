@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('login', 'AuthController@login')->name('login');
+Route::get('/', 'AuthController@login')->name('login');
 Route::get('/registercustomer', 'AuthController@registercustomer');
 Route::get('/registersupplier', 'AuthController@registersupplier');
 Route::get('/registermanager', 'AuthController@registermanager');
