@@ -25,34 +25,44 @@
                             </div>
                             <div class="col-md-6 mt-3">
                                 <table class="table text-justify">
-                                    <tbody>
-                                        <tr>
-                                            <td>Harga</td>
-                                            <td>:</td>
-                                            <td>Rp. {{ number_format($kamar->harga) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Booking</td>
-                                            <td>:</td>
-                                            <td>{{ $kamar->booking }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Deskripsi</td>
-                                            <td>:</td>
-                                            <td>{{ $kamar->deskripsi }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jumlah Pesan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <form action="{{ url('/customer/kamar/detailkamar') }}/{{ $kamar->id }}" method="post">
+                                    <form action="{{ url('/customer/kamar/detailkamar') }}/{{ $kamar->id }}" method="post">
+                                        <tbody>
+                                            <tr>
+                                                <td>Harga</td>
+                                                <td>:</td>
+                                                <td>Rp. {{ number_format($kamar->harga) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Booking</td>
+                                                <td>:</td>
+                                                <td>{{ $kamar->booking }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Deskripsi</td>
+                                                <td>:</td>
+                                                <td>{{ $kamar->deskripsi }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check in </td>
+                                                <td>:</td>
+                                                <td><input class="form-control" type="date" name="check_in" id="check_in"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Check out :</td>
+                                                <td>:</td>
+                                                <td><input class="form-control" type="date" name="check_out" id="check_out"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                
                                                     @csrf
-                                                    <input type="number" name="jumlah_pesan" class="form-control" required>
-                                                    <button type="submit" class="btn btn-primary mt-2"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                                    <button type="submit" class="btn btn-primary mt-2"><i class="fa fa-shopping-cart"></i> Sewa Sekarang</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </form>
                                 </table>
                             </div>
                         </div>
