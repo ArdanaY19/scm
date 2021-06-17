@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:manager']], function(){
     Route::get('/manager/katalog/pesanan/{id}', 'ManagerController@detailpesanan');
     Route::get('/manager/katalog/bukti/{id}', 'ManagerController@buktiupload');
     Route::post('/manager/katalog/pesanan/{id}', 'ManagerController@bukti');
-    Route::get('/manager/katalog/pendapatan', 'ManagerController@pendapatan');
+    
 
     Route::get('/manager/kamar/kamar', 'ManagerController@indexkamar');
     Route::get('/manager/kamar/buatkamar', 'ManagerController@create');
@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:supplier']], function(){
     Route::get('/supplier/katalog/editkatalog/{id}', 'SupplierController@edit');
     Route::post('/supplier/katalog/katalog/{id}', 'SupplierController@update');
     Route::get('/supplier/contact', 'SupplierController@contact');
+    Route::get('/supplier/katalog/pendapatan', 'SupplierController@pendapatan');
 
     Route::get('/supplier/katalog/verifikasi', 'SupplierController@verif');
     Route::get('/supplier/katalog/verifikasi/{id}', 'SupplierController@verifikasidetail');

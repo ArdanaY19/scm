@@ -27,7 +27,7 @@
                                 <strong>Stok :</strong> {{ number_format($katalog->stok) }} pcs <br>
                                 <br>
                                 
-                                <strong>Supplier :</strong> {{ number_format($katalog->username) }}<br>
+                                <strong>Supplier :</strong> {{ $katalog->username }}<br>
                                 <strong>Deskripsi :</strong> <?php
                                                                 echo substr_replace($katalog->deskripsi, "...", 300);
                                                                 ?>
