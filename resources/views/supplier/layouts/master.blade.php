@@ -52,6 +52,7 @@
           <li><a class="nav-link scrollto {{ request()->is('supplier/dashboard') ? 'active' : '' }}" href="/supplier/dashboard">Home</a></li>
           <li><a class="nav-link scrollto {{ request()->is('supplier/katalog/katalog') ? 'active' : '' }}" href="/supplier/katalog/katalog">Katalog</a></li>
           <li><a class="nav-link scrollto {{ request()->is('supplier/katalog/verifikasi') ? 'active' : '' }}" href="/supplier/katalog/verifikasi">Verifikasi</a></li>
+          <li><a class="nav-link scrollto {{ request()->is('supplier/katalog/pendapatan') ? 'active' : '' }}" href="/supplier/katalog/pendapatan">Pendapatan</a></li>
           {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#team">Team</a></li> --}}
           <li class="dropdown"><a href="#"><span class="text-capitalize">{{auth()->user()->username}}</span><i class="bi bi-chevron-down"></i></a>

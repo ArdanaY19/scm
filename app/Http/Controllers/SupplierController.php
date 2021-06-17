@@ -293,4 +293,32 @@ class SupplierController extends Controller
         Alert::success('Bukti Resi Berhasil Diupload, Menunggu Verifikasi');
         return redirect('/supplier/katalog/verifikasi');
     }
+
+    public function pendapatan()
+    {
+        $data = DB::table('k_detailtransactions as td')
+        ->join('k_transactions as t', 't.id', '=', 'td.k_transaction_id')
+        ->join('katalogs as p', 'p.id', '=', 'td.katalog_id')->where('t.status', '=', 2)
+        ->select([
+            DB::raw('sum(t.jumlah_harga) as total'),
+            DB::raw('sum(t.kode) as kodeunik'),
+            DB::raw('sum(td.jumlah) as katalog'),
+            DB::raw('DATE(t.tanggal) as tanggal_pesan'),
+            DB::raw('p.nama_barang as nama_katalog')
+        ])
+        ->groupBy('nama_katalog', 'tanggal_pesan')
+        ->orderBy('tanggal_pesan', 'desc')
+        ->get();
+
+        $total = DB::table('k_transactions as t')
+        ->join('k_detailtransactions as td', 't.id', '=', 'td.k_transaction_id')->where('t.status', '=', 2)
+        ->select([
+            DB::raw('sum(t.jumlah_harga) as jumlah'),
+            DB::raw('sum(t.kode) as unik'),
+            DB::raw('sum(td.jumlah) as stok')
+        ])
+        ->get();
+
+        return view('supplier.katalog.pendapatan', compact('data', 'total'));
+    }
 }

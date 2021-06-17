@@ -55,7 +55,6 @@
           <li><a class="nav-link scrollto {{ request()->is('manager/kamar/kamar') ? 'active' : '' }}" href="/manager/kamar/kamar">Kamar</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/check_out') ? 'active' : '' }}" href="/manager/katalog/check_out">Keranjang</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/pesanan') ? 'active' : '' }}" href="/manager/katalog/pesanan">Pesanan</a></li>
-          <li><a class="nav-link scrollto {{ request()->is('manager/katalog/pendapatan') ? 'active' : '' }}" href="/manager/katalog/pendapatan">Pendapatan</a></li>
           <li class="dropdown"><a href="#"><span class="text-capitalize">{{auth()->user()->username}}</span><i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/manager/profile/profile/{{auth()->user()->manager->id}}">Profile</a></li>
