@@ -85,8 +85,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:customer']], function(){
     Route::get('/customer/profile/edit/{id}', 'CustomerController@customereditprofile');
     Route::post('/customer/profile/update/{id}', 'CustomerController@customerupdateprofile');
     Route::get('/customer/kamar/kamar', 'CustomerController@index');
+    Route::get('/customer/kamar/detailpesanan', 'CustomerController@detailpesanan');
     Route::get('/customer/kamar/detailkamar/{id}', 'CustomerController@detail');    
-
+    Route::post('/customer/kamar/detailkamar/{id}', 'CustomerController@kamarpesanan');    
     Route::get('/customer/contact', 'CustomerController@contact');
 });
 

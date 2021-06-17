@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\customer;
 use App\kamar;
+use App\kamar_transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    
+
     }
 
     /**
@@ -148,9 +151,35 @@ class CustomerController extends Controller
         Alert::success('Success', 'Profile Berhasil Dirubah');
         return redirect(url('/customer/profile/profile/{{auth()->user()->customer->id}}'));
     }
+    public function createpesanan($id)
+    {
+        $customer = \App\customer::find($id);
+        return view('customer.profile.profile', ['customer' => $customer]);
+    }
 
     public function contact()
     {
         return view('customer.contact');
+    }
+    public function kamarpesanan(Request $request,$id)
+    {
+
+        $kamar = kamar::findorfail($id);
+        //insert ke tabel katalog
+        $kamar_transactions = new \App\kamar_transaction;
+        $kamar_transactions->kamar_id =$id;
+        $kamar_transactions->user_id = Auth::user()->id;
+        $kamar_transactions->check_in = $request->check_in;
+        $kamar_transactions->check_out = $request->check_out;
+        $kamar_transactions->harga = $kamar->harga;
+        $kamar_transactions->save();
+
+        Alert::success('Success', 'Pesanan Berhasil Ditambahkan');
+        return redirect('/customer/kamar/kamar');
+    }
+    public function detailpesanan()
+    {
+        $kamar_transactions = kamar_transaction::where('user_id', Auth::user()->id)->get();;
+        return view('customer.kamar.detailpesanan',compact('kamar_transactions'));
     }
 }
