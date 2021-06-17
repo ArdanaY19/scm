@@ -49,6 +49,7 @@ class SupplierController extends Controller
             'harga' => ['required', 'integer'],
             'stok' => ['required', 'integer'],
             'deskripsi' => ['required'],
+            'kategori_katalog' => ['required'],
             'gambar' => ['required', 'mimes:jpg,jpeg,png'],
         ]);
         //insert ke tabel katalog
@@ -57,6 +58,8 @@ class SupplierController extends Controller
         $katalog->harga = $request->harga;
         $katalog->stok = $request->stok;
         $katalog->deskripsi = $request->deskripsi;
+        $katalog->username = Auth::user()->username;
+        $katalog->kategori_katalog = $request->kategori_katalog;
         if ($request->hasFile('gambar')) {
             $request->file('gambar')->move('gambar/', $request->file('gambar')->getClientOriginalName());
             $katalog->gambar = $request->file('gambar')->getClientOriginalName();
@@ -105,21 +108,34 @@ class SupplierController extends Controller
             'harga' => ['required', 'integer'],
             'stok' => ['required', 'integer'],
             'deskripsi' => ['required'],
-            'gambar' => ['required', 'mimes:jpg,jpeg,png'],
+            'kategori_katalog' => ['required'],
+            'gambar' => ['mimes:jpg,jpeg,png'],
         ]);
 
         $ubah = Katalog::findorfail($id);
         $awal = $ubah->gambar;
 
-        $katalogs = [
-            'nama_barang' => $request->nama_barang,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'deskripsi' => $request->deskripsi,
-            'gambar' => $awal,
-        ];
+        
+        if($request->hasFile('gambar')) {
+            $katalogs = [
+                'nama_barang' => $request->nama_barang,
+                'harga' => $request->harga,
+                'stok' => $request->stok,
+                'deskripsi' => $request->deskripsi,
+                'kategori_katalog' => $request->kategori_katalog,
+                'gambar' => $awal,
+            ];
+            $request->gambar->move(public_path() . '/gambar', $awal);
+        }else{
+            $katalogs = [
+                'nama_barang' => $request->nama_barang,
+                'harga' => $request->harga,
+                'stok' => $request->stok,
+                'deskripsi' => $request->deskripsi,
+                'kategori_katalog' => $request->kategori_katalog,
+            ];
+        };
 
-        $request->gambar->move(public_path() . '/gambar', $awal);
         $ubah->update($katalogs);
 
         Alert::success('Success', 'Katalog Berhasil Dirubah');
@@ -254,8 +270,8 @@ class SupplierController extends Controller
 
     public function buktiupload($id)
     {
-        $k_transaction = K_transaction::where('id', $id)->first();
-        $k_detailtransactions = K_detailtransaction::where('k_transaction_id', $k_transaction->id)->get();
+        $k_transaction = k_transaction::where('id', $id)->first();
+        $k_detailtransactions = k_detailtransaction::where('k_transaction_id', $k_transaction->id)->get();
 
         return view('supplier.katalog.bukti', compact('k_transaction', 'k_detailtransactions'));
     }

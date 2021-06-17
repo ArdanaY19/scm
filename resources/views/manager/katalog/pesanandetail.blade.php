@@ -56,7 +56,7 @@
                                 <td>
                                     <img src="{{ url('gambar') }}/{{ $k_transaction_detail->katalog->gambar }}" width="100" height="100" alt="...">
                                 </td>
-                                <td>{{ $k_transaction_detail->jumlah }} kg</td>
+                                <td>{{ $k_transaction_detail->jumlah }} pcs</td>
                                 
                                 @if($k_transaction_detail->k_transaction->bukti_resi != "" )
                                 <td><img src="{{ url('bukti_resi') }}/{{ $k_transaction_detail->k_transaction->bukti_resi }}" width="100" height="100" alt="..."></td>
@@ -67,7 +67,7 @@
                                 @else
                                 <td>Menunggu Resi Diupload</td>
                                 @endif
-                                <td >Rp. {{ number_format($k_transaction_detail->katalog->harga) }}</td>
+                                <td >Rp. {{ number_format($k_transaction_detail->katalog->harga) }} /pcs</td>
                                 <td >Rp. {{ number_format($k_transaction_detail->jumlah_harga) }}</td>
                             </tr>
                             @endforeach

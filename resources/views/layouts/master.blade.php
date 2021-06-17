@@ -42,7 +42,7 @@
     <div class="container d-flex justify-content-between">
 
       <div class="logo">
-        <h1><a href="index.html">Dafam Hotel</a></h1>
+        <h1><a href="/home">Dafam Hotel</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto {{ request()->is('/home') ? 'active' : '' }}" href="/home">Home</a></li>
-          <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#about">About</a></li>
+          {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#about">About</a></li> --}}
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/katalog') ? 'active' : '' }}" href="/manager/katalog/katalog">Katalog</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/kamar/kamar') ? 'active' : '' }}" href="/manager/kamar/kamar">Kamar</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/check_out') ? 'active' : '' }}" href="/manager/katalog/check_out">Keranjang</a></li>
@@ -80,7 +80,7 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-top">
+    {{-- <div class="footer-top">
       <div class="container">
         <div class="row">
 
@@ -136,7 +136,7 @@
 
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="container">
       <div class="copyright">
