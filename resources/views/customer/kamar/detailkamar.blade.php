@@ -30,7 +30,7 @@
                                             <tr>
                                                 <td>Harga</td>
                                                 <td>:</td>
-                                                <td>Rp. {{ number_format($kamar->harga) }}</td>
+                                                <td>Rp. {{ number_format($kamar->harga) }} / malam</td>
                                             </tr>
                                             <tr>
                                                 <td>Booking</td>
@@ -45,12 +45,13 @@
                                             <tr>
                                                 <td>Check in </td>
                                                 <td>:</td>
-                                                <td><input class="form-control" type="date" name="check_in" id="check_in"></td>
+                                                <td><input class="form-control @error('check_in') is-invalid @enderror" type="date" name="check_in" id="check_in"></td>
+
                                             </tr>
                                             <tr>
-                                                <td>Check out :</td>
+                                                <td>Check out</td>
                                                 <td>:</td>
-                                                <td><input class="form-control" type="date" name="check_out" id="check_out"></td>
+                                                <td><input class="form-control @error('check_out') is-invalid @enderror" type="date" name="check_out" id="check_out"></td>
                                             </tr>
                                             <tr>
                                                 <td></td>

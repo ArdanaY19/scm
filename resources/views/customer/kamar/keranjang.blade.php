@@ -82,7 +82,7 @@
                                     <th>Check in</th>
                                     <th>Check Out</th>
                                     <th>Total Harga</th>
-                                    <th>Bukti Transfer</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,26 +100,13 @@
                                     <td>{{ $kamar_transactions->check_in }}</td>
                                     <td>{{ $kamar_transactions->check_out }}</td>
                                     <td>Rp.{{ number_format($kamar_transactions->harga) }}</td>
-                                    <td>
-                                        @if ($kamar_transactions->status==0)
-                                            <form enctype="multipart/form-data" action="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" method="POST">
-                                                @csrf
-                                                <div class="form-group my-2">
-
-                                                    <input id="gambar" type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" value="{{ url('gambar') }}/{{ $kamar_transactions->gambar }}" autocomplete="gambar" autofocus>
-                                                    @error('gambar')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <button type="submit" class="btn btn-primary">Upload Bukti Transfer</button>
-                                                </div>
-                                            </form>
-                                        @else
-                                        <img class="" src="{{ url('gambar') }}/{{ $kamar_transactions->bukti_transfer }}" width="100" height="100" alt="...">
-                                        @endif
+                                    <td class="d-flex">
+                                        <a href="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" class="btn btn-primary mx-2">Selesaikan Pembayaran</a>
+                                        <form action="{{ url('/customer/kamar/hapuspesanan') }}/{{ $kamar_transactions->id }}" method="post">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger mx-2"><i class="fa fa-trash"> Delete</i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

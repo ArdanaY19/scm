@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container" style="min-height: 90vh;">
     <div class="row">
         <div class="col-md-12 mt-4">
             <nav aria-label="breadcrumb">
