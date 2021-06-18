@@ -16,12 +16,12 @@
   <div class="container">
 
     <!-- Outer Row -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
 
-      <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="col-xl-10 col-lg-12 col-md-9 pt-5">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
+          <div class="card-body p-0 pt-4">
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-4 d-none d-lg-block"><img src="{{ url('../assets/img/dafam1.jpg') }}" width="400" height="400" alt=""></div>

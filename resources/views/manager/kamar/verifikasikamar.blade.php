@@ -1,4 +1,4 @@
-@extends('customer.layouts.master')
+@extends('layouts.master')
 
 @section('content')
 <section class="d-flex flex-column justify-content-start align-items-center" style="min-height: 90vh;" data-aos="fade-up">
@@ -70,7 +70,7 @@
                 </div> --}}
                 <div class="card mt-2">
                     <div class="card-body">
-                        <h3><i class="fas fa-info-circle"></i> Keranjang</h3>
+                        <h3><i class="fas fa-info-circle"></i> Verifikasi Kamar</h3>
                         @if(!empty($kamar_transactions))
                         {{-- <p align="right">Tanggal Pesan : {{ $kamar_transactions->created_at }}</p> --}}
                         <table class="table table-striped">
@@ -83,6 +83,7 @@
                                     <th>Check Out</th>
                                     <th>Total Harga</th>
                                     <th>Bukti Transfer</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,36 +91,52 @@
                                 @foreach ($kamar_transactions as $kamar_transactions)
                                 <?php
                                 $kamar = \App\kamar::findorfail($kamar_transactions->kamar_id);
+                                $user= \App\customer::where('user_id',$kamar_transactions->user_id)->first();
                                 ?>
-                                
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{$kamar->nama_barang}}</td>
                                     {{-- <td class="text-capitalize">{{ $kamar->nama_barang}}</td> --}}
-                                    <td>{{Auth::user()->username}}</td>
+                                    <td>{{$user->nama}}</td>
                                     <td>{{ $kamar_transactions->check_in }}</td>
                                     <td>{{ $kamar_transactions->check_out }}</td>
                                     <td>Rp.{{ number_format($kamar_transactions->harga) }}</td>
+                                    <td><img class="" src="{{ url('gambar') }}/{{ $kamar_transactions->bukti_transfer }}" width="100" height="100" alt="..."></td>
                                     <td>
-                                        @if ($kamar_transactions->status==0)
-                                            <form enctype="multipart/form-data" action="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" method="POST">
+                                        @if ($kamar_transactions->status==1)
+                                            <form action="{{ url('/manager/kamar/verifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
                                                 @csrf
-                                                <div class="form-group my-2">
-
-                                                    <input id="gambar" type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" value="{{ url('gambar') }}/{{ $kamar_transactions->gambar }}" autocomplete="gambar" autofocus>
-                                                    @error('gambar')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <button type="submit" class="btn btn-primary">Upload Bukti Transfer</button>
-                                                </div>
+                                                <button type="submit" class="btn btn-primary m-2"><i class="fa fa-trash"> Verifikasi</i></button>
                                             </form>
-                                        @else
-                                        <img class="" src="{{ url('gambar') }}/{{ $kamar_transactions->bukti_transfer }}" width="100" height="100" alt="...">
+                                            {{-- <a href="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" class="btn btn-primary mx-2">Selesaikan Pembayaran</a> --}}
+                                            <form action="{{ url('/manager/kamar/tolakverifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger m-2"><i class="fa fa-trash"> Tolak</i></button>
+                                            </form>
+                                        @elseif($kamar_transactions->status==2)
+                                            <form action="{{ url('/manager/kamar/verifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-secondary m-2" disabled><i class="fa fa-trash"> Verifikasi</i></button>
+                                            </form>
+                                            {{-- <a href="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" class="btn btn-primary mx-2">Selesaikan Pembayaran</a> --}}
+                                            <form action="{{ url('/manager/kamar/tolakverifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger m-2"><i class="fa fa-trash"> Tolak</i></button>
+                                            </form>
+                                        @elseif($kamar_transactions->status==3)
+                                            <form action="{{ url('/manager/kamar/verifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary m-2" ><i class="fa fa-trash"> Verifikasi</i></button>
+                                            </form>
+                                            {{-- <a href="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" class="btn btn-primary mx-2">Selesaikan Pembayaran</a> --}}
+                                            <form action="{{ url('/manager/kamar/tolakverifikasikamar/') }}/{{ $kamar_transactions->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-secondary m-2" disabled><i class="fa fa-trash"> Tolak</i></button>
+                                            </form>
+                                        @elseif ($kamar_transactions->status==4)
+                                            Pesanan Selesai
                                         @endif
+                                        
                                     </td>
                                 </tr>
                                 @endforeach

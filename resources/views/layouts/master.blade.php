@@ -53,6 +53,7 @@
           {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#about">About</a></li> --}}
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/katalog') ? 'active' : '' }}" href="/manager/katalog/katalog">Katalog</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/kamar/kamar') ? 'active' : '' }}" href="/manager/kamar/kamar">Kamar</a></li>
+          <li><a class="nav-link scrollto {{ request()->is('manager/kamar/verifikasikamar') ? 'active' : '' }}" href="/manager/kamar/verifikasikamar">Verifikasi Kamar</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/check_out') ? 'active' : '' }}" href="/manager/katalog/check_out">Keranjang</a></li>
           <li><a class="nav-link scrollto {{ request()->is('manager/katalog/pesanan') ? 'active' : '' }}" href="/manager/katalog/pesanan">Pesanan</a></li>
           <li class="dropdown"><a href="#"><span class="text-capitalize">{{auth()->user()->username}}</span><i class="bi bi-chevron-down"></i></a>

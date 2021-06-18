@@ -19,7 +19,11 @@ class CreateKamarTransactionsTable extends Migration
             $table->string('user_id');
             $table->date('check_in');
             $table->date('check_out');
-            $table->integer('harga');   
+            $table->integer('harga');
+            $table->string('bukti_transfer')->nullable();
+            $table->string('status');
+            $table->integer('rating')->nullable();
+            $table->string('ulasan')->nullable();
             $table->timestamps();
         });
     }

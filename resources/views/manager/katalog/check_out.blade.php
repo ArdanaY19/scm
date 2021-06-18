@@ -1,7 +1,7 @@
 @extends('.layouts.master')
 
 @section('content')
-<section class="d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
+<section class="d-flex flex-column justify-content-start align-items-center" style="min-height: 90vh;" data-aos="fade-up">
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-4">

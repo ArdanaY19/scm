@@ -70,7 +70,7 @@
                 </div> --}}
                 <div class="card mt-2">
                     <div class="card-body">
-                        <h3><i class="fas fa-info-circle"></i> Keranjang</h3>
+                        <h3><i class="fas fa-info-circle"></i> Pesanan</h3>
                         @if(!empty($kamar_transactions))
                         {{-- <p align="right">Tanggal Pesan : {{ $kamar_transactions->created_at }}</p> --}}
                         <table class="table table-striped">
@@ -82,7 +82,9 @@
                                     <th>Check in</th>
                                     <th>Check Out</th>
                                     <th>Total Harga</th>
-                                    <th>Bukti Transfer</th>
+                                    <th>Rating</th>
+                                    <th>Ulasan</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,27 +102,28 @@
                                     <td>{{ $kamar_transactions->check_in }}</td>
                                     <td>{{ $kamar_transactions->check_out }}</td>
                                     <td>Rp.{{ number_format($kamar_transactions->harga) }}</td>
+                                    @if (!is_null($kamar_transactions->rating))
+                                    <td>{{ $kamar_transactions->rating }}</td>
+                                    @else
+                                        <td>Belum ada rating</td>
+                                    @endif
+                                    @if (!is_null($kamar_transactions->ulasan))
+                                    <td>{{ $kamar_transactions->ulasan }}</td>
+                                    @else
+                                        <td>Belum ada Ulasan</td>
+                                    @endif
+                                    @if($kamar_transactions->status==1)
+                                    <td>Menunggu Verifikasi</td>
+                                    @elseif ($kamar_transactions->status==2)
                                     <td>
-                                        @if ($kamar_transactions->status==0)
-                                            <form enctype="multipart/form-data" action="{{ url('/customer/kamar/detailpesanan') }}/{{ $kamar_transactions->id }}" method="POST">
-                                                @csrf
-                                                <div class="form-group my-2">
-
-                                                    <input id="gambar" type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" value="{{ url('gambar') }}/{{ $kamar_transactions->gambar }}" autocomplete="gambar" autofocus>
-                                                    @error('gambar')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <button type="submit" class="btn btn-primary">Upload Bukti Transfer</button>
-                                                </div>
-                                            </form>
-                                        @else
-                                        <img class="" src="{{ url('gambar') }}/{{ $kamar_transactions->bukti_transfer }}" width="100" height="100" alt="...">
-                                        @endif
+                                        <a href="{{ url('/customer/kamar/rating') }}/{{ $kamar_transactions->id }}" class="btn btn-primary">Beri Rating</a>
+                                        
                                     </td>
+                                    @elseif ($kamar_transactions->status==3)
+                                    <td>Pesanan Ditolak</td>
+                                    @elseif ($kamar_transactions->status==4)
+                                    <td>Pesanan Selesai</td>
+                                    @endif
                                 </tr>
                                 @endforeach
                                 {{-- <tr>

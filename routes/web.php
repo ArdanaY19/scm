@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:manager']], function(){
     Route::delete('/manager/katalog/check_out/{id}', 'ManagerController@delete');
     Route::get('/manager/katalog/konfirmasi', 'ManagerController@konfirmasi');
     Route::get('/manager/katalog/pesanan', 'ManagerController@pesanan');
-    Route::get('/manager/katalog/pesanan/{id}', 'ManagerController@detailpesanan');
+    Route::get('/manager/katalog/pesanan/{id}', 'ManagerController@keranjang');
     Route::get('/manager/katalog/bukti/{id}', 'ManagerController@buktiupload');
     Route::post('/manager/katalog/pesanan/{id}', 'ManagerController@bukti');
     
@@ -53,7 +53,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:manager']], function(){
     Route::delete('/manager/kamar/kamar/{id}', 'ManagerController@destroy');
     Route::get('/manager/kamar/editkamar/{id}', 'ManagerController@edit');
     Route::post('/manager/kamar/kamar/{id}', 'ManagerController@update');
-
+    Route::get('/manager/kamar/verifikasikamar', 'ManagerController@verifikasikamar');
+    Route::post('/manager/kamar/verifikasikamar/{id}', 'ManagerController@verifikasi');
+    Route::post('/manager/kamar/tolakverifikasikamar/{id}', 'ManagerController@tolakverifikasi');
     Route::get('/manager/contact', 'ManagerController@contact');
 });
 
@@ -85,9 +87,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:customer']], function(){
     Route::get('/customer/profile/edit/{id}', 'CustomerController@customereditprofile');
     Route::post('/customer/profile/update/{id}', 'CustomerController@customerupdateprofile');
     Route::get('/customer/kamar/kamar', 'CustomerController@index');
-    Route::get('/customer/kamar/detailpesanan', 'CustomerController@detailpesanan');
+    Route::get('/customer/kamar/keranjang', 'CustomerController@keranjang');
     Route::get('/customer/kamar/detailkamar/{id}', 'CustomerController@detail');    
     Route::post('/customer/kamar/detailkamar/{id}', 'CustomerController@kamarpesanan');    
     Route::get('/customer/contact', 'CustomerController@contact');
+    Route::get('/customer/kamar/detailpesanan/{id}', 'CustomerController@detailpesanan');
+    Route::post('/customer/kamar/detailpesanan/{id}', 'CustomerController@uploadbuktitransfer');
+    Route::get('/customer/kamar/pesanan', 'CustomerController@pesanan');
+    Route::delete('/customer/kamar/hapuspesanan/{id}', 'CustomerController@hapuspesanan');
+    Route::get('/customer/kamar/rating/{id}', 'CustomerController@rating');
+    Route::post('/customer/kamar/rating/{id}', 'CustomerController@tambahrating');
 });
 

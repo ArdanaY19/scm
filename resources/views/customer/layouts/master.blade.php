@@ -52,7 +52,8 @@
           <li><a class="nav-link scrollto {{ request()->is('customer/index') ? 'active' : '' }}" href="/customer/index">Home</a></li>
           {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#about">About</a></li> --}}
           <li><a class="nav-link scrollto {{ request()->is('customer/kamar/kamar') ? 'active' : '' }}" href="/customer/kamar/kamar">Kamar</a></li>
-          <li><a class="nav-link scrollto {{ request()->is('customer/kamar/detailpesanan') ? 'active' : '' }}" href="/customer/kamar/detailpesanan">Keranjang</a></li>
+          <li><a class="nav-link scrollto {{ request()->is('customer/kamar/keranjang') ? 'active' : '' }}" href="/customer/kamar/keranjang">Keranjang</a></li>
+          <li><a class="nav-link scrollto {{ request()->is('customer/kamar/pesanan') ? 'active' : '' }}" href="/customer/kamar/pesanan">Pesanan</a></li>
           {{-- <li><a class="nav-link scrollto {{ request()->is('#') ? 'active' : '' }}" href="#team">Team</a></li> --}}
           <li class="dropdown"><a href="#"><span class="text-capitalize">{{auth()->user()->username}}</span><i class="bi bi-chevron-down"></i></a>
             <ul>

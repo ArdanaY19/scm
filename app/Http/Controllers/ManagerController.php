@@ -7,6 +7,7 @@ use App\manager;
 use App\katalog;
 use App\kamar;
 use App\k_transaction;
+use App\kamar_transaction;
 use App\k_detailtransaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -322,7 +323,7 @@ class ManagerController extends Controller
         return view('manager.katalog.pesanan', compact('k_transactions'));
     }
 
-    public function detailpesanan($id)
+    public function keranjang($id)
     {
         $k_transaction = K_transaction::where('id', $id)->first();
         $k_detailtransactions = K_detailtransaction::where('k_transaction_id', $k_transaction->id)->get();
@@ -354,5 +355,32 @@ class ManagerController extends Controller
 
         Alert::success('Bukti Transfer Berhasil Diupload, Menunggu Verifikasi');
         return redirect('/manager/katalog/pesanan');
+    }
+    public function verifikasikamar()
+    {
+        $kamar_transactions = kamar_transaction::where('status','!=', 0)->get();;
+        return view('manager.kamar.verifikasikamar',compact('kamar_transactions'));
+    }
+    public function verifikasi($id)
+    {
+        $kamar_transactions = kamar_transaction::findorfail($id);
+        //insert ke tabel katalog
+        
+        $kamar_transactions->status = 2;
+        $kamar_transactions->save();
+        Alert::success('Pesanan Kamar Berhasil Diverifikasi');
+        return redirect()->back();
+        
+    }
+    public function tolakverifikasi($id)
+    {
+        $kamar_transactions = kamar_transaction::findorfail($id);
+        //insert ke tabel katalog
+        
+        $kamar_transactions->status = 3;
+        $kamar_transactions->save();
+        Alert::success('Pesanan Kamar Berhasil Ditolak');
+        return redirect()->back();
+        
     }
 }
